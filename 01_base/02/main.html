@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        /*body{background-color: black;color: white}*/
+    </style>
+</head>
+<body>
+        <!--
+            插值语法
+                用于动态修改value
+            指令语法
+                用于修改标签属性
+         -->
+    <div id="ii">
+<!-- 插值语法 -->
+        <h2>{{name}}</h2>
+<!-- 指令语法 -->
+        <!-- <a v-bind:href="url">url</a> -->
+        <!-- 简写 -->
+        <a :href="url">url</a>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const vm = new Vue({
+            // 引入el的第一种方法
+            el:'#ii',
+            // data 的第一种写法  对象式
+            /*data:{
+                name:'zhr',
+                url:"http://www.baidu.com"
+            }*/
+            // data 的第二种写法  函数式
+            // 组件必须用第二种方式，函数不能是箭头函数，箭头函数没有this
+            data:function (){
+                console.log(this)       // vue
+                return {
+                    name:'zhr',
+                    url:"http://www.baidu.com"
+                }
+            }
+        })
+        // 引入el的第二种方法
+        // vm.$mount('#ii')
+    </script>
+
+</body>
+</html>
