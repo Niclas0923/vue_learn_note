@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+<div id="root">
+    <!--<button v-on:click="oooo($event,12)">点我显示信息</button>-->
+    <!-- 简化 -->
+    <button @click="o($event,12)">点我显示信息</button>
+</div>
+<script>
+    Vue.config.productionTip = false    // 阻止vue开启时提示产生
+    new Vue({
+        el:'#root',
+        data: {},
+        methods:{
+            // 传参方式
+            o(event,a){
+                console.log(this)       // vue
+                console.log(event)
+                alert(a)
+            }
+        }
+    })
+</script>
+<!--
+    几种行为
+        prevent     阻止默认行为
+        stop        阻止冒泡
+        once        只触发一次
+        capture     捕获时触发事件
+        self        只有event.target是当前操作的元素时才触发事件
+        passive     事件的默认行为立即执行，无需等待事件回调执行
+            后三个不常用
+-->
+
+<div id="root2">
+
+    <a href="http://baidu.com" @click.prevent="o">阻止默认行为转跳</a>
+
+    <div @click="o" style="background-color: blueviolet">
+        <button @click.stop="o">阻止冒泡</button>
+    </div>
+
+    <button @click.once="o">只触发一次</button>
+
+    <div @click.capture="o(2)" style="background-color: blueviolet">
+        <button @click="o(1)">捕获阶段触发事件</button>
+    </div>
+
+    <div @click.self="oe" style="background-color: blueviolet">
+        <div @click="oe" style="height: 20px;background-color: aqua;width: 40px;overflow:hidden">
+            既阻止了冒泡,也让点击是自己产生的
+        </div>
+    </div>
+
+</div>
+<script>
+    Vue.config.productionTip = false    // 阻止vue开启时提示产生
+    new Vue({
+        el:'#root2',
+        data: {},
+        methods:{
+            // 传参方式
+            o(a){
+                alert("hello"+a)
+            },
+            oe(e){
+                console.log(e.target);
+            }
+        }
+    })
+</script>
+</body>
+</html>
