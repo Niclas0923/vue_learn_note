@@ -47,5 +47,22 @@
         // vm.$mount('#ii')
     </script>
 
+    <div id="lllll">
+        单向绑定 <input type="text" :value="name"><br>
+        <!-- v-model仅有value值的项可以绑定 -->
+        双向绑定 <!--<input type="text" v-model:value="name">-->
+        <!-- 简写 -->
+        <input type="text" v-model="name">
+    </div>
+
+    <script>
+        new Vue({
+            el:'#lllll',
+            data:{
+                name:'zhr'
+            }
+        })
+    </script>
+
 </body>
 </html>
