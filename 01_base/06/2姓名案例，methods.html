@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+<div id="root">
+    姓: <input type="text" v-model="fName"><br>
+    名: <input type="text" v-model="lName"><br>
+    姓名: <span>{{fullName()}}</span>
+</div>
+<!--
+    当data中任何数据发生变化，vue都会把整个模板重新解析一遍，从而数据同步
+    但是vue无法判断方法中的返回值是否发生变化，所以所有方法都会重新调用一遍，所以效率不高
+-->
+<script>
+    Vue.config.productionTip = false    // 阻止vue开启时提示产生
+    new Vue({
+        el:'#root',
+        data:{
+            fName:'张',
+            lName:'三'
+        },
+        methods:{
+            fullName(){
+                return this.fName.slice(0,3)+"-"+this.lName.slice(0,3)
+            }
+        }
+    })
+</script>
+</body>
+</html>

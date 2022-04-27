@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+<div id="root">
+    姓: <input type="text" v-model="fName"><br>
+    名: <input type="text" v-model="lName"><br>
+    姓名: <span> {{fallName}}</span><br>
+    姓名: <span> {{fallName}}</span><br>
+    姓名: <span> {{fallName}}</span>
+</div>
+<script>
+    Vue.config.productionTip = false    // 阻止vue开启时提示产生
+    let vm = new Vue({
+        el:'#root',
+        data:{
+            fName:'张',
+            lName:'三'
+        },
+        computed:{
+            fallName:{
+                // 当有人读取fallName时，get就会被调用,且返回值作为fallName的值
+                /*
+                    调用可能
+                        初次读取
+                        所依赖的数据发生变化时
+                * */
+                get(){
+                    console.log("被调用了")
+                    return this.fName.slice(0,3)+"-"+this.lName.slice(0,3)
+                    // vue中存在缓存，当同一模板多次调用时，只调用一次
+                },
+                //当fallName被修改时调用
+                set(value){
+                    const arr = value.split("-")
+                    console.log(arr)
+                    this.fName = arr[0]
+                    this.lName = arr[1]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
