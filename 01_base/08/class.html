@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+        .oo{width: 200px;height: 200px;border: 2px white solid}
+        .zhr1{background-color: blue}
+        .zhr2{border-radius: 20px}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 绑定class,字符串写法,用于单个样式不确定 -->
+        <div class="oo" :class="a" @click="changeClass">{{name}}</div>
+        <!-- 数组写法,用于不确定，会更改，个数名字都不确定 -->
+        <div class="oo" :class="arr">{{name}}</div>
+        <!-- 对象写法，用于确定几个，但是不确定使用 -->
+        <div class="oo" :class="obj">{{name}}</div>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data:{
+                name : 'zhr',
+                a : 'zhr1',
+                arr:['zhr1','zhr2'] ,
+                obj:{
+                    'zhr1':true ,
+                    'zhr2':false
+                }
+            },
+            methods:{
+                changeClass(){
+                    this.a = 'zhr2'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
