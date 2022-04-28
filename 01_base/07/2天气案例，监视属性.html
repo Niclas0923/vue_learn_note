@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>今天天气很{{weather}} </h1>
+        <button @click = "changeWeather">切换天气</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data:{
+                isHot:true ,
+                weather : '凉爽',
+                a:{
+                    b:2
+                }
+            },
+            methods:{
+                changeWeather(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                isHot:{
+                    // 运行时执行,立即执行
+                    immediate:true,
+                    // 深度监视，如果监视的是一个对象，对象内的数据发生改变时也会触发，之前只是检测地址的更改，现在内容也检测
+                    // deep:true,
+                    // 当监视属性发生变化的时候调用
+                    handler(newValue,oldValue){
+                        this.weather =  newValue?'凉爽':"炎热"
+                    }
+                }
+                // 监视多级,用字符串
+                /*'a.b':{
+
+                }*/
+            }
+
+        })
+        // 实例外添加监视
+        /*vm.$watch('isHot',{
+            handler(newValue,oldValue){
+                this.weather =  newValue?'凉爽':"炎热"
+            }
+        })*/
+    </script>
+</body>
+</html>

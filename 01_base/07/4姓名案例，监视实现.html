@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+<div id="root">
+    姓: <input type="text" v-model="fName"><br>
+    名: <input type="text" v-model="lName"><br>
+    姓名: <span> {{fallName}}</span>
+</div>
+<script>
+    Vue.config.productionTip = false    // 阻止vue开启时提示产生
+    let vm = new Vue({
+        el:'#root',
+        data:{
+            fName:'张',
+            lName:'三',
+            // 对比来说多一个选项
+            fallName:"张-三"
+        },
+        watch:{
+            // 但是想实现异步就很方便
+            fName(n){
+                // 这里必须用箭头函数，因为箭头函数没有this，会去上一级找this，也就是vue
+                // 但是普通函数当回调函数，是浏览器定时器管理模块调用的，也就是window调用的，this就是window
+                /*setTimeout(()=>{
+                    this.fallName = n + "-" + this.lName
+                },1000)*/
+                this.fallName = n + "-" + this.lName
+            },
+            lName(n){
+                this.fallName =  this.fName + "-" + n
+            }
+        }
+    })
+</script>
+</body>
+</html>

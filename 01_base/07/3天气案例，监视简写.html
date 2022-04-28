@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>今天天气很{{weather}} </h1>
+        <button @click = "changeWeather">切换天气</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data:{
+                isHot:true ,
+                weather : '凉爽',
+                a:{
+                    b:2
+                }
+            },
+            methods:{
+                changeWeather(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                isHot(newValue,oldValue){
+                    this.weather =  newValue?'凉爽':"炎热"
+                }
+            }
+
+        })
+        // 实例外添加监视
+        /*vm.$watch('isHot',function (newValue,oldValue){
+            this.weather =  newValue?'凉爽':"炎热"
+        })*/
+    </script>
+</body>
+</html>
