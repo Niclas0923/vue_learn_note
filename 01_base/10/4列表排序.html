@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="ss" placeholder="请输入名字">
+		<button @click="oo = 1">列表升序</button>
+        <button @click="oo = 2">列表降序</button>
+        <button @click="oo = 0">原顺序</button>
+        <div v-for="i in falterArr" :key="i.id">{{i.name}}-{{i.age}}-{{i.sex}}</div>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data() {
+                return {
+                    persons:[
+                        {di:'001',name:"马冬梅",age:19,sex:"女"},
+                        {di:'002',name:"周冬雨",age:20,sex:"女"},
+                        {di:'003',name:"周杰伦",age:21,sex:"男"},
+                        {di:'004',name:"温兆伦",age:22,sex:"男"}
+                    ],
+                    ss : "",
+					oo : 0      // 1升序，2降序，0恢复
+                }
+            },
+            computed:{
+                falterArr(){
+                    const ss = this.persons.filter((p)=>{
+                        return p.name.indexOf(this.ss) !== -1
+                    })
+                    if (this.oo !== 0){
+                        ss.sort((a,b)=>{
+                              return this.oo === 1 ? a.age-b.age : b.age-a.age
+                        })
+                    }
+                    return ss
+                }
+            },
+        })
+    </script>
+</body>
+</html>
