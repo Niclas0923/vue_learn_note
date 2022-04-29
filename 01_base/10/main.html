@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 对数组的遍历 -->
+        <ul>
+            <li v-for="i in p" :key="i.id">{{i.name}} - {{i.age}} <input type="text"></li>
+            <!-- 
+                这里的key是对于这一项的标识
+                如果不写就是按index来当key
+                    这样出现错位写入时，后面的所有项都要重新加载，并且真实dom的残留会跟着上一步，这一步不会保留
+             -->
+        </ul>
+        <button @click.once="add">添加一个人</button>
+        <!-- 对对象的遍历 -->
+        <ul>
+            <li v-for="a,b in car">{{a}}-{{b}}</li>
+        </ul>
+        <!-- 对字符串的遍历 --> 
+        <ul>
+            <li v-for="a,b in ss">{{a}}-{{b}}</li>
+        </ul>
+        <!-- 按次数遍历 -->
+        <ul>
+            <li v-for="a,b in 5">{{a}}-{{b}}</li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data() {
+                return {
+                    p:[
+                        {id:'001',name:'张三',age:18},
+                        {id:'002',name:'李四',age:20},
+                        {id:'003',name:'王五',age:30}
+                    ],
+                    car:{
+                        name:'sss',
+                        press:45,
+                        color:'red'
+                    },
+                    ss:'hello'
+                }
+            },
+            methods: {
+                add(){
+                    this.p.unshift({id:'004',name:'老刘',age:40})
+                }
+            },
+        })
+    </script>
+</body>
+</html>
