@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="ss" placeholder="请输入名字">
+        <div v-for="i in falterArr" :key="i.id">{{i.name}}-{{i.age}}-{{i.sex}}</div>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el:'#root',
+            data() {
+                return {
+                    persons:[
+                        {di:'001',name:"马冬梅",age:19,sex:"女"},
+                        {di:'002',name:"周冬雨",age:20,sex:"女"},
+                        {di:'003',name:"周杰伦",age:21,sex:"男"},
+                        {di:'004',name:"温兆伦",age:22,sex:"男"}
+                    ],
+                    ss:"",
+                }
+            },
+            computed:{
+                falterArr(){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.ss) !== -1
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -22,15 +22,15 @@
         <button @click.once="add">添加一个人</button>
         <!-- 对对象的遍历 -->
         <ul>
-            <li v-for="a,b in car">{{a}}-{{b}}</li>
+            <li v-for="(a,b) in car">{{a}}-{{b}}</li>
         </ul>
         <!-- 对字符串的遍历 --> 
         <ul>
-            <li v-for="a,b in ss">{{a}}-{{b}}</li>
+            <li v-for="(a,b) in ss">{{a}}-{{b}}</li>
         </ul>
         <!-- 按次数遍历 -->
         <ul>
-            <li v-for="a,b in 5">{{a}}-{{b}}</li>
+            <li v-for="(a,b) in 5">{{a}}-{{b}}</li>
         </ul>
     </div>
     <script>
