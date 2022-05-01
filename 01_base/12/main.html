@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+    <div id="root">
+        <form @submit.prevent="up">
+            <!-- 可以通过v-model.trim来清除前后的空格 -->
+            <label for="zhangHao" >账号:</label><input type="text"  id="zhangHao" v-model.trim="userInfo.account"><br>
+            <label for="miMa" >密码:</label><input type="password"  id="miMa" v-model="userInfo.password"><br>
+            <!-- 可以通过v-model.number这个修饰符来确定数据是数字不是字符串 -->
+            <label for="nianLing" >年龄:</label><input type="number"  id="nianLing" v-model.number="userInfo.age"><br>
+            性别 :
+            男 <input type="radio" name="sex" v-model="userInfo.sex" value="1">
+            女 <input type="radio" name="sex" v-model="userInfo.sex" value="0"><br>
+            爱好 :
+            学习 <input type="checkbox" v-model="userInfo.hobby" value="study">
+            打游戏 <input type="checkbox" v-model="userInfo.hobby" value="game">
+            吃饭 <input type="checkbox" v-model="userInfo.hobby" value="eat"><br>
+            所属校区
+            <!-- 可以通过v-model.lazy可以让它在失去焦点的一瞬间再收集数据,减少检测 -->
+            <select v-model.lazy="userInfo.school">
+                <option value="">请选择校区</option>
+                <option value="laoShan">崂山</option>
+                <option value="siFang">四方</option>
+            </select><br>
+            其他信息: <br>
+            <textarea v-model="userInfo.other"></textarea><br>
+            <input type="checkbox" v-model="userInfo.check">阅读并接受 <a href="#">《用户协议》</a><br>
+            <button>
+                提交
+            </button>
+        </form>
+    </div>
+    <script>
+        Vue.config.productionTip = false    // 阻止vue开启时提示产生
+        const mv = new Vue({
+            el: '#root',
+            data: {
+                userInfo:{
+                    account:"",
+                    password:"",
+                    age: '',
+                    sex: '',
+                    hobby:[],
+                    school:'',
+                    other:'',
+                    check:''
+                }
+            },
+            methods:{
+                up(){
+                    console.log(this.userInfo)
+                }
+            }
+        })
+</script>
+</body>
+</html>
