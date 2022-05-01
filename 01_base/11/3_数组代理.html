@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body{background-color: black;color: white}
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <!--
+        直接通过索引修改数组是不能被vue捕捉到的
+        要通过数组的几个会影响原来数组的方法修改才会被检测到
+        push pop shift删除第一个 unshift在第一个添加 splice替换 sort排序 reverse翻转
+            方法是包装，更改了函数
+            第一步是调用正常的push
+            第二步是刷新页面
+        当然通过vue.set也可以修改并被检测
+    -->
+    <script>
+
+    </script>
+
+</body>
+</html>
